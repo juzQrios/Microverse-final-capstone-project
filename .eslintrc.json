@@ -1,34 +1,26 @@
 {
-  "env": {
-    "browser": true,
-    "es6": true,
-    "jest": true
-  },
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+    "env": {
+        "browser": true,
+        "es6": true
     },
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
-  "extends": [
-    "airbnb",
-    "plugin:react/recommended"
-  ],
-  "plugins": [
-    "react"
-  ],
-  "rules": {
-    "react/jsx-filename-extension": [
-      "warn",
-      {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
-      }
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb"
     ],
-    "import/no-unresolved": "off",
-    "no-shadow": "off"
-  }
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+    }
 }

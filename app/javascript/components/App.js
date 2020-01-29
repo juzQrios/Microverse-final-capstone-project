@@ -1,9 +1,10 @@
 import React from 'react';
+import Container from '@material-ui/core/Container';
 
 const App = () => (
-  <div>
+  <Container maxWidth='sm' style={{textAlign: 'center'}}>
     <h1>Work in Progress</h1>
-  </div>
+  </Container>
 );
 
 export default App;

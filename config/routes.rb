@@ -15,5 +15,12 @@ Rails.application.routes.draw do
     get 'users/:id', to: 'users#show'
     put 'users/:id', to: 'users#update'
     delete 'users/:id', to: 'users#destroy'
+
+    # APPOINTMENTS API
+    get 'appointments', to: 'appointments#index'
+    post 'appointments', to: 'appointments#create'
+    get 'appointments/:id', to: 'appointments#show'
+    put 'appointments/:id', to: 'appointments#update'
+    delete 'appointments/:id', to: 'appointments#destroy'
   end
 end

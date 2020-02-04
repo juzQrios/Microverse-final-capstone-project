@@ -8,11 +8,13 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { deleteDoctor } from '../../redux/actions/doctors';
 
-const DashBoard = ({ doctors }) => {
+const DashBoard = ({ doctors, deleteDoctor }) => {
   const handleDelete = (event) => {
     event.preventDefault();
-    console.log(event.target.querySelector('input'));
+    const doctorId = event.target.querySelector('input').value;
+    deleteDoctor(doctorId);
   };
   return (
     <div className="Dashboard">
@@ -49,10 +51,13 @@ const DashBoard = ({ doctors }) => {
 
 DashBoard.propTypes = {
   doctors: PropTypes.array.isRequired,
+  deleteDoctor: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   doctors: state.doctors,
 });
 
-export default connect(mapStateToProps)(DashBoard);
+const mapDispatchToProps = { deleteDoctor };
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashBoard);

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import configureStore from '../redux/configureStore';
-import getDoctors from '../redux/actions/doctors';
+import { getDoctors } from '../redux/actions/doctors';
 import Landing from './Landing';
 import Search from './Search';
 import DoctorsList from './DoctorsList';
@@ -27,7 +27,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/" render={() => <Landing />} />
               <Route exact path="/admin" render={() => <DashBoard />} />
-              <Route path="/admin/new" render={(routerObj) => <DoctorForm match={routerObj.match} />} />
+              <Route exact path="/admin/new" render={(routerObj) => <DoctorForm match={routerObj.match} />} />
               <Route
                 path="/admin/update/:id"
                 render={(routerObj) => (
@@ -38,9 +38,10 @@ class App extends React.Component {
                 )}
               />
               <LoginChecker>
-                <Route path="/search" render={() => <Search />} />
-                <Route path="/appointments" render={() => <Appointments />} />
+                <Route exact path="/search" render={() => <Search />} />
+                <Route exact path="/appointments" render={() => <Appointments />} />
                 <Route
+                  exact
                   path="/doctors/:id/book_appointment"
                   render={(routerObj) => (
                     <BookAppointment
@@ -53,6 +54,7 @@ class App extends React.Component {
                   )}
                 />
                 <Route
+                  exact
                   path="/doctors/:id"
                   render={(routerObj) => (
                     <Doctor
@@ -64,7 +66,7 @@ class App extends React.Component {
                     />
                   )}
                 />
-                <Route path="/doctors" render={() => <DoctorsList doctors={store.getState().doctors} />} />
+                <Route exact path="/doctors" render={() => <DoctorsList doctors={store.getState().doctors} />} />
               </LoginChecker>
             </Switch>
           </BrowserRouter>

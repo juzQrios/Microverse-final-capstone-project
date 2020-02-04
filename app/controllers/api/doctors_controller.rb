@@ -22,19 +22,19 @@ class Api::DoctorsController < ApplicationController
   # PUT /doctors/:id
   def update
     @doctor.update(doctor_params)
-    head :no_content
+    json_response(@doctor)
   end
 
   # DELETE /doctors/:id
   def destroy
     @doctor.destroy
-    head :no_content
+    json_response(@doctor)
   end
 
   private
 
   def doctor_params
-    params.permit(:name)
+    params.permit(:name, :id)
   end
 
   def set_doctor

@@ -4,9 +4,6 @@ class Api::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy, :show_appointments]
   before_action :set_user_by_name, only: [:show_by_name]
 
-  # todo: remove before pushing
-  protect_from_forgery with: :null_session
-
   # GET /users
   def index
     json_response(User.all)

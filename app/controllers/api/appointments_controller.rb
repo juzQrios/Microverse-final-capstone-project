@@ -2,9 +2,6 @@ class Api::AppointmentsController < ApplicationController
   include Response
   include ExceptionHandler
   before_action :set_appointment, only: [:show, :update, :destroy]
-  
-  # todo: remove before pushing
-  protect_from_forgery with: :null_session
 
   # GET /appointments
   def index

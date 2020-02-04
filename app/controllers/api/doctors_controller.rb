@@ -2,9 +2,6 @@ class Api::DoctorsController < ApplicationController
   include Response
   include ExceptionHandler
   before_action :set_doctor, only: [:show, :update, :destroy]
-  
-  # todo: remove before pushing
-  protect_from_forgery with: :null_session
 
   # GET /doctors
   def index

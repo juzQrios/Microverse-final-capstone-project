@@ -11,7 +11,7 @@ const getDoctorsSuccess = (json) => (
 const getDoctors = () => (
   (dispatch) => {
     dispatch({ type: GET_DOCTORS_REQUEST });
-    return fetch('api/doctors.json')
+    return fetch('/api/doctors.json')
       .then((response) => response.json())
       .then((json) => dispatch(getDoctorsSuccess(json)))
       .catch((error) => { throw new Error(error); });

@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     # USERS API
     get 'users', to: 'users#index'
     post 'users', to: 'users#create'
+    get 'users/:id/appointments', to: 'users#show_appointments'
     get 'users/:id', to: 'users#show'
+    get 'users/n/:name', to: 'users#show_by_name'
     put 'users/:id', to: 'users#update'
     delete 'users/:id', to: 'users#destroy'
 

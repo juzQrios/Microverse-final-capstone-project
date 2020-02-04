@@ -1,8 +1,9 @@
 class Api::UsersController < ApplicationController
   include Response
   include ExceptionHandler
-  before_action :set_user, only: [:show, :update, :destroy]
-  
+  before_action :set_user, only: [:show, :update, :destroy, :show_appointments]
+  before_action :set_user_by_name, only: [:show_by_name]
+
   # todo: remove before pushing
   protect_from_forgery with: :null_session
 
@@ -20,6 +21,20 @@ class Api::UsersController < ApplicationController
   # GET /users/:id
   def show
     json_response(@user)
+  end
+
+  # GET /users/n/:name
+  def show_by_name
+    if @user.nil?
+      json_response({}, :not_found)
+    else
+      json_response(@user)
+    end
+  end
+
+  # GET /users/:id/appointments
+  def show_appointments
+    json_response(@user.appointments)
   end
 
   # PUT /users/:id
@@ -42,5 +57,9 @@ class Api::UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_user_by_name
+    @user = User.find_by_name(params[:name]) || nil
   end
 end

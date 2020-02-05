@@ -36,7 +36,7 @@ const createDoctorSuccess = (json) => (
   }
 );
 
-const createDoctor = (name) => (
+const createDoctor = (name, speciality, exp, likes) => (
   (dispatch) => {
     dispatch({ type: CREATE_DOCTOR_REQUEST });
     return fetch('/api/doctors', {
@@ -44,7 +44,9 @@ const createDoctor = (name) => (
       headers: {
         'content-type': 'application/json',
       },
-      body: JSON.stringify({ name }),
+      body: JSON.stringify({
+        name, speciality, exp, likes,
+      }),
     })
       .then((response) => response.json())
       .then((json) => dispatch(createDoctorSuccess(json)))
@@ -62,14 +64,18 @@ const updateDoctorSuccess = (json) => (
 
 const updateDoctor = (updatedDoctor) => (
   (dispatch) => {
-    const { id, name } = updatedDoctor;
+    const {
+      id, name, speciality, exp, likes,
+    } = updatedDoctor;
     dispatch({ type: UPDATE_DOCTOR_REQUEST });
     return fetch(`/api/doctors/${id}`, {
       method: 'put',
       headers: {
         'content-type': 'application/json',
       },
-      body: JSON.stringify({ name }),
+      body: JSON.stringify({
+        name, speciality, exp, likes,
+      }),
     })
       .then((response) => response.json())
       .then((json) => dispatch(updateDoctorSuccess(json)))

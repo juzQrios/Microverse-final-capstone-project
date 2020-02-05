@@ -42,7 +42,6 @@ const DashBoard = ({ doctors, deleteDoctor }) => {
             </ListItem>
           ))
         }
-        {/* Doctors Speciality selection */}
       </List>
       <Link to="/admin/new">Add a Doctor</Link>
     </div>

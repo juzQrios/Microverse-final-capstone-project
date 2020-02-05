@@ -2,9 +2,6 @@ class Api::DoctorsController < ApplicationController
   include Response
   include ExceptionHandler
   before_action :set_doctor, only: [:show, :update, :destroy]
-  
-  # todo: remove before pushing
-  protect_from_forgery with: :null_session
 
   # GET /doctors
   def index
@@ -25,19 +22,19 @@ class Api::DoctorsController < ApplicationController
   # PUT /doctors/:id
   def update
     @doctor.update(doctor_params)
-    head :no_content
+    json_response(@doctor)
   end
 
   # DELETE /doctors/:id
   def destroy
     @doctor.destroy
-    head :no_content
+    json_response(@doctor)
   end
 
   private
 
   def doctor_params
-    params.permit(:name)
+    params.permit(:name, :speciality, :exp, :likes, :id)
   end
 
   def set_doctor

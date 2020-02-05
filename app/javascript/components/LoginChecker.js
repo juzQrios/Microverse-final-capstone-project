@@ -13,7 +13,7 @@ LoginChecker.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentUser: state.currentUser,
 });
 

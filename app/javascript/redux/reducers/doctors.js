@@ -7,9 +7,9 @@ const doctorsReducer = (state = initialState, action) => {
     case 'CREATE_DOCTOR_SUCCESS':
       return [...state, action.json];
     case 'UPDATE_DOCTOR_SUCCESS':
-      return [...state.filter((doc) => Number(doc.id) !== Number(action.json.id)), action.json];
+      return [...state.filter(doc => Number(doc.id) !== Number(action.json.id)), action.json];
     case 'DELETE_DOCTOR_SUCCESS':
-      return [...state.filter((doc) => Number(doc.id) !== Number(action.json.id))];
+      return [...state.filter(doc => Number(doc.id) !== Number(action.json.id))];
     default: return state;
   }
 };

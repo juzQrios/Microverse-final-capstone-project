@@ -22,7 +22,7 @@ Landing.propTypes = {
   currentUser: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentUser: state.currentUser,
 });
 

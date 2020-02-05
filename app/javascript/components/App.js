@@ -27,10 +27,10 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/" render={() => <Landing />} />
               <Route exact path="/admin" render={() => <DashBoard />} />
-              <Route exact path="/admin/new" render={(routerObj) => <DoctorForm match={routerObj.match} />} />
+              <Route exact path="/admin/new" render={routerObj => <DoctorForm match={routerObj.match} />} />
               <Route
                 path="/admin/update/:id"
-                render={(routerObj) => (
+                render={routerObj => (
                   <DoctorForm
                     match={routerObj.match}
                     doctors={store.getState().doctors}
@@ -43,10 +43,10 @@ class App extends React.Component {
                 <Route
                   exact
                   path="/doctors/:id/book_appointment"
-                  render={(routerObj) => (
+                  render={routerObj => (
                     <BookAppointment
                       doctor={
-                        store.getState().doctors.find((doctor) => (
+                        store.getState().doctors.find(doctor => (
                           doctor.id === Number(routerObj.match.params.id)
                         ))
                       }
@@ -56,10 +56,10 @@ class App extends React.Component {
                 <Route
                   exact
                   path="/doctors/:id"
-                  render={(routerObj) => (
+                  render={routerObj => (
                     <Doctor
                       doctor={
-                        store.getState().doctors.find((doctor) => (
+                        store.getState().doctors.find(doctor => (
                           doctor.id === Number(routerObj.match.params.id)
                         ))
                       }

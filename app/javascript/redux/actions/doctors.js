@@ -11,7 +11,7 @@ const DELETE_DOCTOR_REQUEST = 'DELETE_DOCTOR_REQUEST';
 const DELETE_DOCTOR_SUCCESS = 'DELETE_DOCTOR_SUCCESS';
 
 // GET Doctors
-const getDoctorsSuccess = (json) => (
+const getDoctorsSuccess = json => (
   {
     type: GET_DOCTORS_SUCCESS,
     json,
@@ -22,14 +22,14 @@ const getDoctors = () => (
   (dispatch) => {
     dispatch({ type: GET_DOCTORS_REQUEST });
     return fetch('/api/doctors.json')
-      .then((response) => response.json())
-      .then((json) => dispatch(getDoctorsSuccess(json)))
+      .then(response => response.json())
+      .then(json => dispatch(getDoctorsSuccess(json)))
       .catch((error) => { throw new Error(error); });
   }
 );
 
 // CREATE Doctors
-const createDoctorSuccess = (json) => (
+const createDoctorSuccess = json => (
   {
     type: CREATE_DOCTOR_SUCCESS,
     json,
@@ -48,21 +48,21 @@ const createDoctor = (name, speciality, exp, likes) => (
         name, speciality, exp, likes,
       }),
     })
-      .then((response) => response.json())
-      .then((json) => dispatch(createDoctorSuccess(json)))
+      .then(response => response.json())
+      .then(json => dispatch(createDoctorSuccess(json)))
       .catch((error) => { throw new Error(error); });
   }
 );
 
 // UPDATE Doctors
-const updateDoctorSuccess = (json) => (
+const updateDoctorSuccess = json => (
   {
     type: UPDATE_DOCTOR_SUCCESS,
     json,
   }
 );
 
-const updateDoctor = (updatedDoctor) => (
+const updateDoctor = updatedDoctor => (
   (dispatch) => {
     const {
       id, name, speciality, exp, likes,
@@ -77,22 +77,22 @@ const updateDoctor = (updatedDoctor) => (
         name, speciality, exp, likes,
       }),
     })
-      .then((response) => response.json())
-      .then((json) => dispatch(updateDoctorSuccess(json)))
+      .then(response => response.json())
+      .then(json => dispatch(updateDoctorSuccess(json)))
       .catch((error) => { throw new Error(error); });
   }
 );
 
 
 // DELETE Doctors
-const deleteDoctorSuccess = (json) => (
+const deleteDoctorSuccess = json => (
   {
     type: DELETE_DOCTOR_SUCCESS,
     json,
   }
 );
 
-const deleteDoctor = (id) => (
+const deleteDoctor = id => (
   (dispatch) => {
     dispatch({ type: DELETE_DOCTOR_REQUEST });
     return fetch(`/api/doctors/${id}`, {
@@ -101,8 +101,8 @@ const deleteDoctor = (id) => (
         'content-type': 'application/json',
       },
     })
-      .then((response) => response.json())
-      .then((json) => dispatch(deleteDoctorSuccess(json)))
+      .then(response => response.json())
+      .then(json => dispatch(deleteDoctorSuccess(json)))
       .catch((error) => { throw new Error(error); });
   }
 );

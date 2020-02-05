@@ -20,7 +20,7 @@ const DashBoard = ({ doctors, deleteDoctor }) => {
     <div className="Dashboard">
       <List className="doctors">
         {
-          doctors.map((doctor) => (
+          doctors.map(doctor => (
             <ListItem key={doctor.id}>
               <ListItemText>
                 <Link to={`/doctors/${doctor.id}`}>{doctor.name}</Link>
@@ -53,7 +53,7 @@ DashBoard.propTypes = {
   deleteDoctor: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   doctors: state.doctors,
 });
 

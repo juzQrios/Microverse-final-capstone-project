@@ -10,14 +10,13 @@ const DoctorsList = ({ doctors }) => {
   const renderedList = (
     <List className="doctors">
       {
-        doctors.map((doctor) => (
+        doctors.map(doctor => (
           <ListItem key={doctor.id}>
             <ListItemText><Link to={`/doctors/${doctor.id}`}>{doctor.name}</Link></ListItemText>
             <Link to={`/doctors/${doctor.id}/book_appointment`}>Book Appointment</Link>
           </ListItem>
         ))
       }
-      {/* Doctors Speciality selection */}
     </List>
   );
 

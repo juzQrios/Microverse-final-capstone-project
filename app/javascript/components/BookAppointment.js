@@ -25,7 +25,7 @@ const BookAppointment = ({ doctor, currentUser, createAppointment }) => {
   };
 
 
-  const handleDateChange = date => {
+  const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
@@ -69,7 +69,7 @@ BookAppointment.propTypes = {
   createAppointment: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentUser: state.currentUser,
 });
 

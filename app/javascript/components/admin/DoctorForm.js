@@ -80,7 +80,7 @@ class DoctorForm extends React.Component {
       neurologist: 'Neurologist',
     };
     const specialities = ['Family Physician', 'Pediatrician', 'Gynecologist', 'Dentist', 'Psychiatrist', 'Cardiologist', 'Dermatologist', 'Neurologist'];
-    const specialityValue = specialities.findIndex((speciality) => specialitiesObject[doctor.speciality] === speciality);
+    const specialityValue = specialities.findIndex(speciality => specialitiesObject[doctor.speciality] === speciality);
     return (
       <form onSubmit={this.handleSubmit.bind(this)} noValidate autoComplete="off">
         {this.isNew ? '' : <input type="number" value={doctor.id} readOnly hidden />}
@@ -116,7 +116,7 @@ class DoctorForm extends React.Component {
     const { doctors } = this.props;
     const { match } = this.props;
     const { formSubmitted } = this.state;
-    const doctor = this.isNew ? this.defaultDoctor : doctors.find((doc) => doc.id === Number(match.params.id));
+    const doctor = this.isNew ? this.defaultDoctor : doctors.find(doc => doc.id === Number(match.params.id));
     return (
       <div className="DoctorForm">
         {formSubmitted ? <Redirect to="/admin" /> : ''}
@@ -136,7 +136,7 @@ DoctorForm.propTypes = {
   updateDoctor: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   doctors: state.doctors,
 });
 

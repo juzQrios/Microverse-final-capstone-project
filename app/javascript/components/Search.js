@@ -75,7 +75,7 @@ class Search extends React.Component {
         />
         <div className="speciality-selection">
           {
-            Object.keys(this.specialities).map((speciality) => (
+            Object.keys(this.specialities).map(speciality => (
               <Button key={speciality} id={speciality} onClick={(e) => { this.handleSelection(e, speciality); }} variant="outlined" color="primary">
                 {this.specialities[speciality]}
               </Button>
@@ -94,7 +94,7 @@ Search.propTypes = {
   doctors: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   doctors: state.doctors,
 });
 

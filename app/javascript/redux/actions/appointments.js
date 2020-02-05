@@ -4,24 +4,24 @@ const GET_APPOINTMENT_SUCCESS = 'GET_APPOINTMENT_SUCCESS';
 const CREATE_APPOINTMENT_REQUEST = 'CREATE_APPOINTMENT_REQUEST';
 const CREATE_APPOINTMENT_SUCCESS = 'CREATE_APPOINTMENT_SUCCESS';
 
-const getAppointmentsSuccess = (json) => (
+const getAppointmentsSuccess = json => (
   {
     type: GET_APPOINTMENT_SUCCESS,
     json,
   }
 );
 
-const getAppointments = (id) => (
+const getAppointments = id => (
   (dispatch) => {
     dispatch({ type: GET_APPOINTMENT_REQUEST });
     return fetch(`api/users/${id}/appointments`)
-      .then((response) => response.json())
-      .then((json) => dispatch(getAppointmentsSuccess(json)))
+      .then(response => response.json())
+      .then(json => dispatch(getAppointmentsSuccess(json)))
       .catch((error) => { throw new Error(error); });
   }
 );
 
-const createAppointmentSuccess = (json) => (
+const createAppointmentSuccess = json => (
   {
     type: CREATE_APPOINTMENT_SUCCESS,
     json,
@@ -40,8 +40,8 @@ const createAppointment = (doctor_id, user_id, date, time) => (
         doctor_id, user_id, date, time,
       }),
     })
-      .then((response) => response.json())
-      .then((json) => dispatch(createAppointmentSuccess(json)))
+      .then(response => response.json())
+      .then(json => dispatch(createAppointmentSuccess(json)))
       .catch((error) => { throw new Error(error); });
   }
 );

@@ -20,11 +20,11 @@ class Appointments extends React.PureComponent {
     return (
       <Container maxWidth="sm">
         <div>
-          {appointments.map((appointment) => (
+          {appointments.map(appointment => (
             <Appointment
               key={appointment.id}
               appointment={appointment}
-              doctor={doctors.find((doctor) => doctor.id === appointment.doctor_id)}
+              doctor={doctors.find(doctor => doctor.id === appointment.doctor_id)}
             />
           ))}
         </div>
@@ -40,7 +40,7 @@ Appointments.propTypes = {
   doctors: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentUser: state.currentUser,
   appointments: state.appointments,
   doctors: state.doctors,

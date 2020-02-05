@@ -1,7 +1,7 @@
 class Api::UsersController < ApplicationController
   include Response
   include ExceptionHandler
-  before_action :set_user, only: %i( show update destory show_appointments)
+  before_action :set_user, only: %i[show update destory show_appointments]
   before_action :set_user_by_name, only: [:show_by_name]
 
   # GET /users

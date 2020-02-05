@@ -1,7 +1,13 @@
 class Doctor < ApplicationRecord
   # enum
-  enum speciality: [ :family_physician, :pediatrician, :gynecologist, :dentist, :psychiatrist, :cardiologist, :dermatologist, :neurologist]
-
+  enum speciality: %i(family_physician
+   pediatrician
+   gynecologist
+   dentist
+   psychiatrist
+   cardiologist
+   dermatologist
+   neurologist)
   # association
   has_many :appointments, dependent: :destroy
 

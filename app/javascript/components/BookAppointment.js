@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 import DateFnsUtils from '@date-io/date-fns';
 import addMinutes from 'date-fns/addMinutes';
 import {

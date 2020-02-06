@@ -1,7 +1,7 @@
 class Api::DoctorsController < ApplicationController
   include Response
   include ExceptionHandler
-  before_action :set_doctor, only: [:show, :update, :destroy]
+  before_action :set_doctor, only: %i[show update destroy]
 
   # GET /doctors
   def index

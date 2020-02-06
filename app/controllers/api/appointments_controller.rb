@@ -1,7 +1,7 @@
 class Api::AppointmentsController < ApplicationController
   include Response
   include ExceptionHandler
-  before_action :set_appointment, only: [:show, :update, :destroy]
+  before_action :set_appointment, only: %i[show update destroy]
 
   # GET /appointments
   def index

@@ -4,7 +4,6 @@ RSpec.describe 'Appointments API', type: :request do
   # init test data
   let!(:appointments) { create_list(:appointment, 5) }
   let(:appointment_id) { appointment.first.id }
-
   # Test for GET /api/appointments
   describe 'GET /api/appointments' do
     before { get '/api/appointments' }

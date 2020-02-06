@@ -4,7 +4,6 @@ RSpec.describe 'Doctors API', type: :request do
   # init test data
   let!(:doctors) { create_list(:doctor, 5) }
   let(:doctor_id) { doctor.first.id }
-
   # Test for GET /api/doctors
   describe 'GET /api/doctors' do
     before { get '/api/doctors' }

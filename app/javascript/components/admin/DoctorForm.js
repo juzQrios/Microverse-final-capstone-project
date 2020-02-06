@@ -11,7 +11,10 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Container from '@material-ui/core/Container';
 import { createDoctor, updateDoctor } from '../../redux/actions/doctors';
+import StyledInput from '../styled/StyledInput';
+import ValidateError from '../styled/ValidateError';
 
 class DoctorForm extends React.Component {
   constructor(props) {
@@ -89,10 +92,10 @@ class DoctorForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit.bind(this)} autoComplete="off">
         {this.isNew ? '' : <input type="number" value={doctor.id} readOnly hidden />}
-        <TextField id="name" type="text" inputRef={this.nameField} defaultValue={doctor.name} label="Doctor's Name" variant="outlined" required fullWidth margin="normal" />
-        <div className="name-error" aria-live="polite" />
-        <TextField id="exp" type="number" inputRef={this.expField} defaultValue={doctor.exp} label="Years of exp" variant="outlined" required fullWidth margin="normal" />
-        <TextField id="likes" type="number" inputRef={this.likesField} defaultValue={doctor.likes} label="Likes" variant="outlined" required fullWidth margin="normal" />
+        <ValidateError className="name-error" aria-live="polite" />
+        <TextField id="name" type="text" inputRef={this.nameField} defaultValue={doctor.name} label="Doctor's Name" required fullWidth margin="normal" />
+        <TextField id="exp" type="number" inputRef={this.expField} defaultValue={doctor.exp} label="Years of exp" required fullWidth margin="normal" />
+        <TextField id="likes" type="number" inputRef={this.likesField} defaultValue={doctor.likes} label="Likes" required fullWidth margin="normal" />
         <FormControl fullWidth margin="normal">
           <InputLabel id="select-outlined-label">
             Speciality
@@ -124,13 +127,13 @@ class DoctorForm extends React.Component {
     const { formSubmitted } = this.state;
     const doctor = this.isNew ? this.defaultDoctor : doctors.find(doc => doc.id === Number(match.params.id));
     return (
-      <div className="DoctorForm">
+      <Container className="DoctorForm">
         {formSubmitted ? <Redirect to="/admin" /> : ''}
         <h2>
           {`${this.isNew ? 'Add new' : 'Update'} Doctor`}
         </h2>
         {this.isNew || doctors.length !== 0 ? this.renderForm(doctor) : <div>Loading</div>}
-      </div>
+      </Container>
     );
   }
 }

@@ -2,13 +2,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Button from '@material-ui/core/Button';
+import styled from 'styled-components';
+import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Container from '@material-ui/core/Container';
 import { deleteDoctor } from '../../redux/actions/doctors';
+import LinkButton from '../styled/LinkButton';
+import ListHeader from '../styled/ListHeader';
+
+const Item = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+`;
+
+const Card = styled.div`
+  margin: 0.5em;
+  padding: 0.6em;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.20);
+  border-radius: 5px;
+`;
 
 const DashBoard = ({ doctors, deleteDoctor }) => {
   const handleDelete = (event) => {
@@ -17,34 +30,35 @@ const DashBoard = ({ doctors, deleteDoctor }) => {
     deleteDoctor(doctorId);
   };
   return (
-    <div className="Dashboard">
-      <List className="doctors">
+    <Container maxWidth="md" className="Dashboard">
+      <div className="doctors">
+        <h2>Admin Dashboard</h2>
         {
           doctors.map(doctor => (
-            <ListItem key={doctor.id}>
-              <ListItemText>
-                <Link to={`/doctors/${doctor.id}`}>{doctor.name}</Link>
-              </ListItemText>
-              <ListItemText>
-                <Link to={`/admin/update/${doctor.id}`}>Update</Link>
-              </ListItemText>
-              <form onSubmit={handleDelete}>
-                <input type="number" value={doctor.id} hidden readOnly />
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  type="submit"
-                  startIcon={<DeleteIcon />}
-                >
-                  Delete
-                </Button>
-              </form>
-            </ListItem>
+            <Card key={doctor.id}>
+              <ListHeader
+                title={doctor.name}
+                subTitle=""
+              />
+              <Item>
+                <LinkButton as="a" href={`/admin/update/${doctor.id}`}>
+                  Update
+                </LinkButton>
+                <form onSubmit={handleDelete}>
+                  <input type="number" value={doctor.id} hidden readOnly />
+                  <IconButton aria-label="delete" type="submit">
+                    <DeleteIcon />
+                  </IconButton>
+                </form>
+              </Item>
+            </Card>
           ))
         }
-      </List>
-      <Link to="/admin/new">Add a Doctor</Link>
-    </div>
+      </div>
+      <LinkButton>
+        <a href="/admin/new">Add a Doctor</a>
+      </LinkButton>
+    </Container>
   );
 };
 

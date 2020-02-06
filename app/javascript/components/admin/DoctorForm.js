@@ -13,7 +13,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Container from '@material-ui/core/Container';
 import { createDoctor, updateDoctor } from '../../redux/actions/doctors';
-import StyledInput from '../styled/StyledInput';
 import ValidateError from '../styled/ValidateError';
 
 class DoctorForm extends React.Component {

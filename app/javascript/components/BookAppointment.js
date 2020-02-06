@@ -30,7 +30,7 @@ const BookAppointment = ({ doctor, currentUser, createAppointment }) => {
   };
 
   return (
-    <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+    <form autoComplete="off" onSubmit={handleSubmit}>
       {redirect ? <Redirect to="/appointments" /> : ''}
       <h2>
         {`Book Appointment with ${doctor.name}`}

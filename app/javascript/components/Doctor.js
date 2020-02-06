@@ -1,10 +1,13 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
+import StyledContainer from './styled/StyledContainer';
+import Header from './styled/Header';
+import LinkButton from './styled/LinkButton';
 
 const Doctor = ({ doctor }) => {
   const {
-    name, speciality, exp, likes,
+    name, speciality, exp, likes, id,
   } = doctor;
   const specialities = {
     family_physician: 'Family Physician',
@@ -17,12 +20,17 @@ const Doctor = ({ doctor }) => {
     neurologist: 'Neurologist',
   };
   return (
-    <div className="Doctor">
-      <h2>{ name }</h2>
-      <div>{`Speciality: ${specialities[speciality]}`}</div>
-      <div>{`Years of exp: ${exp}`}</div>
+    <StyledContainer maxWidth="md" className="Doctor">
+      <Header
+        title={name}
+        subTitle={specialities[speciality]}
+      />
+      <div>{`Years of experience: ${exp}`}</div>
       <div>{`Likes: ${likes}`}</div>
-    </div>
+      <LinkButton>
+        <a href={`/doctors/${id}/book_appointment`}>Book Appointment</a>
+      </LinkButton>
+    </StyledContainer>
   );
 };
 

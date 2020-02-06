@@ -31,12 +31,14 @@ git clone git@github.com:juzQrios/Microverse-final-capstone-project.git
 cd Microverse-final-capstone-project
 ```
 
+Switch to branch in question.
+
 ## Install
 
 Install dependencies
 
 ```bash
-bundle install
+bundle install --without production
 ```
 
 ```bash

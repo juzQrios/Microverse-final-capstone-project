@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import DateFnsUtils from '@date-io/date-fns';
 import addMinutes from 'date-fns/addMinutes';
@@ -13,6 +12,10 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import { createAppointment } from '../redux/actions/appointments';
+import StyledContainer from './styled/StyledContainer';
+import Header from './styled/Header';
+import StyledInput from './styled/StyledInput';
+import RoundButton from './styled/RoundButton';
 
 const BookAppointment = ({ doctor, currentUser, createAppointment }) => {
   const [selectedDate, setSelectedDate] = useState(new Date('2020-02-20T02:20:02'));
@@ -30,37 +33,42 @@ const BookAppointment = ({ doctor, currentUser, createAppointment }) => {
   };
 
   return (
-    <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-      {redirect ? <Redirect to="/appointments" /> : ''}
-      <h2>
-        {`Book Appointment with ${doctor.name}`}
-      </h2>
-      <TextField id="name" value={currentUser.name} disabled label="Your username" variant="outlined" required fullWidth />
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <KeyboardDatePicker
-          margin="normal"
-          id="date-picker-dialog"
-          label="Pick a date"
-          format="dd/MM/yyyy"
-          value={selectedDate}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change date',
-          }}
+    <StyledContainer>
+      <form autoComplete="off" onSubmit={handleSubmit}>
+        {redirect ? <Redirect to="/appointments" /> : ''}
+        <Header
+          title="Book Appointment"
+          subTitle={`with ${doctor.name}`}
         />
-        <KeyboardTimePicker
-          margin="normal"
-          id="time-picker"
-          label="Pick a time"
-          value={selectedDate}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change time',
-          }}
-        />
-      </MuiPickersUtilsProvider>
-      <Button type="submit" size="large" variant="outlined" color="primary" style={{ marginTop: '1em' }}>Book Appointment</Button>
-    </form>
+        <StyledInput id="name" value={currentUser.name} disabled />
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <KeyboardDatePicker
+            margin="normal"
+            id="date-picker-dialog"
+            label="Pick a date"
+            format="dd/MM/yyyy"
+            value={selectedDate}
+            onChange={handleDateChange}
+            fullWidth
+            KeyboardButtonProps={{
+              'aria-label': 'change date',
+            }}
+          />
+          <KeyboardTimePicker
+            margin="normal"
+            id="time-picker"
+            label="Pick a time"
+            value={selectedDate}
+            onChange={handleDateChange}
+            fullWidth
+            KeyboardButtonProps={{
+              'aria-label': 'change time',
+            }}
+          />
+        </MuiPickersUtilsProvider>
+        <RoundButton type="submit" fullWidth>Book Appointment</RoundButton>
+      </form>
+    </StyledContainer>
   );
 };
 BookAppointment.propTypes = {

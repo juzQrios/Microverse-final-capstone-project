@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import { getAppointments } from '../redux/actions/appointments';
 import Appointment from './Appointment';
+import Header from './styled/Header';
 
 class Appointments extends React.PureComponent {
   constructor(props) {
@@ -18,7 +19,11 @@ class Appointments extends React.PureComponent {
   render() {
     const { appointments, doctors } = this.props;
     return (
-      <Container maxWidth="sm">
+      <Container maxWidth="md">
+        <Header
+          title="Appointments"
+          subTitle=""
+        />
         <div>
           {appointments.map(appointment => (
             <Appointment

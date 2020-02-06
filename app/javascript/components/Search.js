@@ -2,12 +2,34 @@
 /* eslint-disable react/no-unused-state */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
+import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import DoctorsList from './DoctorsList';
+import StyledContainer from './styled/StyledContainer';
+import StyledInput from './styled/StyledInput';
+import Header from './styled/Header';
+import LinkButton from './styled/LinkButton';
+
+const SpecialityButton = styled(Button)`
+  color: #2CBBA9;
+  background-color: #E1FFF7;
+  margin: 2%;
+  flex: 46%;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.20);
+
+  &:hover {
+    background-color: #E1FFF7;
+  }
+`;
+
+const SpecialitySelection = styled.div`
+  display:flex;
+  flex-wrap:wrap;
+  flex-direction:row;
+  justify-content:flex-start;
+  align-items:stretch;
+`;
 
 class Search extends React.Component {
   constructor(props) {
@@ -63,29 +85,39 @@ class Search extends React.Component {
   render() {
     const { doctors } = this.state;
     return (
-      <Container maxWidth="sm">
-        <TextField
+      <StyledContainer maxWidth="md">
+        <StyledInput
           id="search"
           type="search"
           onChange={(e) => { this.handleSearch(e); }}
-          inputRef={this.searchField}
-          label="Search for doctors"
-          variant="outlined"
-          fullWidth
+          ref={this.searchField}
+          placeholder="Search for doctors"
         />
-        <div className="speciality-selection">
+        <Header
+          title="Search Doctors"
+          subTitle="Search by directly typing the doctors name and/or selecting their speciality"
+        />
+        <SpecialitySelection className="speciality-selection">
           {
             Object.keys(this.specialities).map(speciality => (
-              <Button key={speciality} id={speciality} onClick={(e) => { this.handleSelection(e, speciality); }} variant="outlined" color="primary">
+              <SpecialityButton
+                key={speciality}
+                id={speciality}
+                onClick={(e) => { this.handleSelection(e, speciality); }}
+              >
                 {this.specialities[speciality]}
-              </Button>
+              </SpecialityButton>
             ))
           }
-        </div>
+        </SpecialitySelection>
         <DoctorsList doctors={doctors} />
-        <Link to="/appointments">Appointments</Link>
-        <Link to="/doctors">All Doctors</Link>
-      </Container>
+        <LinkButton type="button">
+          <a href="/doctors">Doctors List</a>
+        </LinkButton>
+        <LinkButton type="button">
+          <a href="/appointments">Appointments List</a>
+        </LinkButton>
+      </StyledContainer>
     );
   }
 }

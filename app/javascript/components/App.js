@@ -1,8 +1,8 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import { Provider } from 'react-redux';
-import Container from '@material-ui/core/Container';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { StylesProvider } from '@material-ui/core/styles';
 import configureStore from '../redux/configureStore';
 import { getDoctors } from '../redux/actions/doctors';
 import Landing from './Landing';
@@ -22,8 +22,8 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Container maxWidth="sm">
-          <BrowserRouter>
+        <BrowserRouter>
+          <StylesProvider injectFirst>
             <Switch>
               <Route exact path="/" render={() => <Landing />} />
               <Route exact path="/admin" render={() => <DashBoard />} />
@@ -69,8 +69,8 @@ class App extends React.Component {
                 <Route exact path="/doctors" render={() => <DoctorsList doctors={store.getState().doctors} />} />
               </LoginChecker>
             </Switch>
-          </BrowserRouter>
-        </Container>
+          </StylesProvider>
+        </BrowserRouter>
       </Provider>
     );
   }

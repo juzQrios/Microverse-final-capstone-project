@@ -11,7 +11,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Container from '@material-ui/core/Container';
 import { createDoctor, updateDoctor } from '../../redux/actions/doctors';
+import ValidateError from '../styled/ValidateError';
 
 class DoctorForm extends React.Component {
   constructor(props) {
@@ -35,29 +37,34 @@ class DoctorForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { speciality } = this.state;
-    const name = this.nameField.current.value;
-    const exp = this.expField.current.value;
-    const likes = this.likesField.current.value;
-    if (this.isNew) {
-      const { createDoctor } = this.props;
-      createDoctor(name, speciality, exp, likes);
-      this.setState({
-        formSubmitted: true,
-      });
+    const name = this.nameField.current.value.trim();
+    if (name !== '') {
+      const { speciality } = this.state;
+      const exp = this.expField.current.value;
+      const likes = this.likesField.current.value;
+      if (this.isNew) {
+        const { createDoctor } = this.props;
+        createDoctor(name, speciality, exp, likes);
+        this.setState({
+          formSubmitted: true,
+        });
+      } else {
+        const { updateDoctor, match } = this.props;
+        const updatedDoctor = {
+          id: match.params.id,
+          name,
+          speciality,
+          exp,
+          likes,
+        };
+        updateDoctor(updatedDoctor);
+        this.setState({
+          formSubmitted: true,
+        });
+      }
     } else {
-      const { updateDoctor, match } = this.props;
-      const updatedDoctor = {
-        id: match.params.id,
-        name,
-        speciality,
-        exp,
-        likes,
-      };
-      updateDoctor(updatedDoctor);
-      this.setState({
-        formSubmitted: true,
-      });
+      this.nameField.current.value = '';
+      document.querySelector('.name-error').innerHTML = 'Empty Whitespaced strings not allowed';
     }
   }
 
@@ -82,11 +89,12 @@ class DoctorForm extends React.Component {
     const specialities = ['Family Physician', 'Pediatrician', 'Gynecologist', 'Dentist', 'Psychiatrist', 'Cardiologist', 'Dermatologist', 'Neurologist'];
     const specialityValue = specialities.findIndex(speciality => specialitiesObject[doctor.speciality] === speciality);
     return (
-      <form onSubmit={this.handleSubmit.bind(this)} noValidate autoComplete="off">
+      <form onSubmit={this.handleSubmit.bind(this)} autoComplete="off">
         {this.isNew ? '' : <input type="number" value={doctor.id} readOnly hidden />}
-        <TextField id="name" type="text" inputRef={this.nameField} defaultValue={doctor.name} label="Doctor's Name" variant="outlined" required fullWidth margin="normal" />
-        <TextField id="exp" type="number" inputRef={this.expField} defaultValue={doctor.exp} label="Years of exp" variant="outlined" required fullWidth margin="normal" />
-        <TextField id="likes" type="number" inputRef={this.likesField} defaultValue={doctor.likes} label="Likes" variant="outlined" required fullWidth margin="normal" />
+        <ValidateError className="name-error" aria-live="polite" />
+        <TextField id="name" type="text" inputRef={this.nameField} defaultValue={doctor.name} label="Doctor's Name" required fullWidth margin="normal" />
+        <TextField id="exp" type="number" inputRef={this.expField} defaultValue={doctor.exp} label="Years of exp" required fullWidth margin="normal" />
+        <TextField id="likes" type="number" inputRef={this.likesField} defaultValue={doctor.likes} label="Likes" required fullWidth margin="normal" />
         <FormControl fullWidth margin="normal">
           <InputLabel id="select-outlined-label">
             Speciality
@@ -118,13 +126,13 @@ class DoctorForm extends React.Component {
     const { formSubmitted } = this.state;
     const doctor = this.isNew ? this.defaultDoctor : doctors.find(doc => doc.id === Number(match.params.id));
     return (
-      <div className="DoctorForm">
+      <Container className="DoctorForm">
         {formSubmitted ? <Redirect to="/admin" /> : ''}
         <h2>
           {`${this.isNew ? 'Add new' : 'Update'} Doctor`}
         </h2>
         {this.isNew || doctors.length !== 0 ? this.renderForm(doctor) : <div>Loading</div>}
-      </div>
+      </Container>
     );
   }
 }

@@ -2,7 +2,11 @@
 
 > A simple React-Redux application running on Rails.
 
-<!-- ![Application Screenshot](./screenshot.png) -->
+![Welcome Screen Screenshot](./screenshot_welcome.png)
+
+![Search Screen Screenshot](./screenshot_search.png)
+
+[Design idea](https://www.behance.net/gallery/77208667/MediCo-Medical-mobile-app-UIUX-design?tracking_source=search%7Cmobile%20app) by [Vinisha Panjikar on Behance](https://www.behance.net/vinishapanjikar)
 
 ## Built With
 
@@ -12,7 +16,7 @@
 
 ## Live Demo
 
-<!-- [Live on Heroku](https://bookstore-ad1.herokuapp.com/) -->
+[Live on Heroku](https://microverse-capstone-final.herokuapp.com/)
 
 ## Getting Started
 
@@ -35,6 +39,10 @@ Install dependencies
 bundle install
 ```
 
+```bash
+yarn install
+```
+
 ## Start local server
 
 In the project directory, run:
@@ -42,6 +50,14 @@ In the project directory, run:
 ```bash
 rails s
 ```
+
+Optionally, start webpack dev server for JavaScript hot-relaod:
+
+```bash
+./bin/webpack-dev-server
+```
+
+View Admin Dashboard to manage Doctors list at [`http://localhost:3000/admin`](http://localhost:3000/admin)
 
 View the application at [`http://localhost:3000`](http://localhost:3000)
 

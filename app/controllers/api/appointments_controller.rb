@@ -14,23 +14,6 @@ class Api::AppointmentsController < ApplicationController
     json_response(@appointment, :created)
   end
 
-  # GET /appointments/:id
-  def show
-    json_response(@appointment)
-  end
-
-  # PUT /appointments/:id
-  def update
-    @appointment.update(appointment_params)
-    head :no_content
-  end
-
-  # DELETE /appointments/:id
-  def destroy
-    @appointment.destroy
-    head :no_content
-  end
-
   private
 
   def appointment_params

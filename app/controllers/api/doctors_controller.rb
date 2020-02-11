@@ -14,11 +14,6 @@ class Api::DoctorsController < ApplicationController
     json_response(@doctor, :created)
   end
 
-  # GET /doctors/:id
-  def show
-    json_response(@doctor)
-  end
-
   # PUT /doctors/:id
   def update
     @doctor.update(doctor_params)

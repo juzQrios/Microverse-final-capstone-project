@@ -4,20 +4,10 @@ class Api::UsersController < ApplicationController
   before_action :set_user, only: %i[show update destory show_appointments]
   before_action :set_user_by_name, only: [:show_by_name]
 
-  # GET /users
-  def index
-    json_response(User.all)
-  end
-
   # POST /users
   def create
     @user = User.create!(user_params)
     json_response(@user, :created)
-  end
-
-  # GET /users/:id
-  def show
-    json_response(@user)
   end
 
   # GET /users/n/:name
@@ -32,18 +22,6 @@ class Api::UsersController < ApplicationController
   # GET /users/:id/appointments
   def show_appointments
     json_response(@user.appointments)
-  end
-
-  # PUT /users/:id
-  def update
-    @user.update(user_params)
-    head :no_content
-  end
-
-  # DELETE /users/:id
-  def destroy
-    @user.destroy
-    head :no_content
   end
 
   private

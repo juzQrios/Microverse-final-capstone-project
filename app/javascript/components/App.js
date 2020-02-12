@@ -7,7 +7,6 @@ import configureStore from '../redux/configureStore';
 import { getDoctors } from '../redux/actions/doctors';
 import Landing from './Landing';
 import Search from './Search';
-import DoctorsList from './DoctorsList';
 import Appointments from './Appointments';
 import Doctor from './Doctor';
 import BookAppointment from './BookAppointment';

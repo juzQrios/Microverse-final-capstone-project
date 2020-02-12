@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const StyledDiv = styled.div`
+const StyledHeader = styled.header`
   text-align: center;
   margin-bottom: 2em;
 `;
@@ -18,14 +18,14 @@ const SubTitle = styled.div`
 
 function Header({ title, subTitle }) {
   return (
-    <StyledDiv>
+    <StyledHeader>
       <StyledH1>
         {title}
       </StyledH1>
       <SubTitle>
         {subTitle}
       </SubTitle>
-    </StyledDiv>
+    </StyledHeader>
   );
 }
 

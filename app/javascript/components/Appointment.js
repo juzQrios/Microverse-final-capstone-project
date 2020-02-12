@@ -13,7 +13,7 @@ const Header = styled.header`
   }
 `;
 
-const Card = styled.div`
+const Card = styled.article`
   margin: 0.8em 0;
   padding: 0.5em 1em;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.20);

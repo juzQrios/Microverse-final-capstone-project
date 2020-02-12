@@ -51,7 +51,7 @@ const Doctor = ({ doctor }) => {
           {name}
         </h1>
       </StyledHeader>
-      <section>
+      <section className="doctor-details">
         <DetailsDiv>
           <span className="bold">Doctor ID: </span>
           <span>{id}</span>

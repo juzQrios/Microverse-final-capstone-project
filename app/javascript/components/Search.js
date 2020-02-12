@@ -23,7 +23,7 @@ const SpecialityButton = styled(Button)`
   }
 `;
 
-const SpecialitySelection = styled.div`
+const SpecialitySelection = styled.section`
   display:flex;
   flex-wrap:wrap;
   flex-direction:row;
@@ -116,7 +116,9 @@ class Search extends React.Component {
             ))
           }
         </SpecialitySelection>
-        <DoctorsList doctors={doctors} />
+        <section className="DoctorsList">
+          <DoctorsList doctors={doctors} />
+        </section>
         <Section>
           <LinkButton as="a" href="/doctors">
             Doctors List

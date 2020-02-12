@@ -33,13 +33,15 @@ const UserLogin = ({ getUser }) => {
         title="Welcome"
         subTitle="Enter/Add your username"
       />
-      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        <StyledInput type="text" id="name" placeholder="Username" ref={nameField} required />
-        <ValidateError className="name-error" aria-live="polite" />
-        <RoundButton type="submit">
-          Enter / Add
-        </RoundButton>
-      </form>
+      <section>
+        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+          <StyledInput type="text" id="name" placeholder="Username" ref={nameField} required />
+          <ValidateError className="name-error" aria-live="polite" />
+          <RoundButton type="submit">
+            Enter / Add
+          </RoundButton>
+        </form>
+      </section>
     </WelcomeContainer>
   );
 };

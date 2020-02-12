@@ -9,11 +9,11 @@ class Landing extends React.PureComponent {
   render() {
     const { currentUser } = this.props;
     return (
-      <div className="Landing">
+      <section className="Landing">
         {
       Object.entries(currentUser).length === 0 ? <UserLogin /> : <Redirect to="/search" />
         }
-      </div>
+      </section>
     );
   }
 }

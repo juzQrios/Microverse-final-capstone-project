@@ -24,7 +24,7 @@ class Appointments extends React.PureComponent {
           title="Appointments"
           subTitle=""
         />
-        <div>
+        <section className="appointment-list">
           {appointments.map(appointment => (
             <Appointment
               key={appointment.id}
@@ -32,7 +32,7 @@ class Appointments extends React.PureComponent {
               doctor={doctors.find(doctor => doctor.id === appointment.doctor_id)}
             />
           ))}
-        </div>
+        </section>
       </BackgroundContainer>
     );
   }

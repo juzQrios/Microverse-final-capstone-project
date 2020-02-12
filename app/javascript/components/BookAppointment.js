@@ -5,16 +5,34 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import DateFnsUtils from '@date-io/date-fns';
 import addMinutes from 'date-fns/addMinutes';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
+  TimePicker,
+  DatePicker,
 } from '@material-ui/pickers';
 import { createAppointment } from '../redux/actions/appointments';
 import StyledContainer from './styled/StyledContainer';
 import Header from './styled/Header';
 import StyledInput from './styled/StyledInput';
 import RoundButton from './styled/RoundButton';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#2CBBA9',
+      light: '#2CBBA9',
+      dark: '#2CBBA9',
+    },
+    secondary: {
+      main: '#E1FFF7',
+    },
+  },
+  shape: {
+    borderRadius: 30,
+  },
+});
 
 const BookAppointment = ({ doctor, currentUser, createAppointment }) => {
   const [selectedDate, setSelectedDate] = useState(new Date('2020-02-20T02:20:02'));
@@ -40,31 +58,29 @@ const BookAppointment = ({ doctor, currentUser, createAppointment }) => {
           subTitle={`with ${doctor.name}`}
         />
         <StyledInput id="name" value={currentUser.name} disabled />
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <KeyboardDatePicker
-            margin="normal"
-            id="date-picker-dialog"
-            label="Pick a date"
-            format="dd/MM/yyyy"
-            value={selectedDate}
-            onChange={handleDateChange}
-            fullWidth
-            KeyboardButtonProps={{
-              'aria-label': 'change date',
-            }}
-          />
-          <KeyboardTimePicker
-            margin="normal"
-            id="time-picker"
-            label="Pick a time"
-            value={selectedDate}
-            onChange={handleDateChange}
-            fullWidth
-            KeyboardButtonProps={{
-              'aria-label': 'change time',
-            }}
-          />
-        </MuiPickersUtilsProvider>
+        <ThemeProvider theme={theme}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <DatePicker
+              margin="normal"
+              id="date-picker-dialog"
+              label="Pick a date"
+              format="dd/MM/yyyy"
+              value={selectedDate}
+              onChange={handleDateChange}
+              inputVariant="outlined"
+              fullWidth
+            />
+            <TimePicker
+              margin="normal"
+              id="time-picker"
+              label="Pick a time"
+              value={selectedDate}
+              onChange={handleDateChange}
+              inputVariant="outlined"
+              fullWidth
+            />
+          </MuiPickersUtilsProvider>
+        </ThemeProvider>
         <RoundButton type="submit" fullWidth>Book Appointment</RoundButton>
       </form>
     </StyledContainer>

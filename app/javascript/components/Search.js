@@ -31,6 +31,12 @@ const SpecialitySelection = styled.div`
   align-items:stretch;
 `;
 
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5em;
+`;
+
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -111,12 +117,14 @@ class Search extends React.Component {
           }
         </SpecialitySelection>
         <DoctorsList doctors={doctors} />
-        <LinkButton type="button">
-          <a href="/doctors">Doctors List</a>
-        </LinkButton>
-        <LinkButton type="button">
-          <a href="/appointments">Appointments List</a>
-        </LinkButton>
+        <Section>
+          <LinkButton as="a" href="/doctors">
+            Doctors List
+          </LinkButton>
+          <LinkButton as="a" href="/appointments">
+            Appointments List
+          </LinkButton>
+        </Section>
       </StyledContainer>
     );
   }

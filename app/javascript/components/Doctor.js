@@ -27,8 +27,8 @@ const Doctor = ({ doctor }) => {
       />
       <div>{`Years of experience: ${exp}`}</div>
       <div>{`Likes: ${likes}`}</div>
-      <LinkButton>
-        <a href={`/doctors/${id}/book_appointment`}>Book Appointment</a>
+      <LinkButton as="a" href={`/doctors/${id}/book_appointment`}>
+        Book Appointment
       </LinkButton>
     </StyledContainer>
   );

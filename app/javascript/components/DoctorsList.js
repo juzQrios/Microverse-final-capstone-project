@@ -25,8 +25,9 @@ const ListDetails = styled.div`
 `;
 
 const ListAction = styled(LinkButton)`
-  width: 46%;
-  font-size: 0.7em;
+  flex: 1;
+  margin: 0 0.2em;
+  font-size: 0.9em;
 `;
 
 const DoctorsList = ({ doctors }) => {
@@ -54,11 +55,11 @@ const DoctorsList = ({ doctors }) => {
               <div>{`${doctor.likes} Likes`}</div>
             </ListDetails>
             <ListDetails>
-              <ListAction type="button">
-                <a href={`/doctors/${doctor.id}`}>View Profile</a>
+              <ListAction as="a" href={`/doctors/${doctor.id}`}>
+                View Profile
               </ListAction>
-              <ListAction type="button">
-                <a href={`/doctors/${doctor.id}/book_appointment`}>Book</a>
+              <ListAction as="a" href={`/doctors/${doctor.id}/book_appointment`}>
+                Book
               </ListAction>
             </ListDetails>
           </ListItem>

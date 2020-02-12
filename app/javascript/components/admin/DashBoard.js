@@ -23,6 +23,13 @@ const Card = styled.div`
   border-radius: 5px;
 `;
 
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 0.5em;
+`;
+
 const DashBoard = ({ doctors, deleteDoctor }) => {
   const handleDelete = (event) => {
     event.preventDefault();
@@ -55,9 +62,11 @@ const DashBoard = ({ doctors, deleteDoctor }) => {
           ))
         }
       </div>
-      <LinkButton>
-        <a href="/admin/new">Add a Doctor</a>
-      </LinkButton>
+      <Section>
+        <LinkButton as="a" href="/admin/new" fullWidth>
+          Add a Doctor
+        </LinkButton>
+      </Section>
     </Container>
   );
 };

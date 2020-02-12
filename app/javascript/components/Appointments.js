@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Container from '@material-ui/core/Container';
+import BackgroundContainer from './styled/BackgroundContainer';
 import { getAppointments } from '../redux/actions/appointments';
 import Appointment from './Appointment';
 import Header from './styled/Header';
@@ -19,7 +19,7 @@ class Appointments extends React.PureComponent {
   render() {
     const { appointments, doctors } = this.props;
     return (
-      <Container maxWidth="md">
+      <BackgroundContainer maxWidth="md">
         <Header
           title="Appointments"
           subTitle=""
@@ -33,7 +33,7 @@ class Appointments extends React.PureComponent {
             />
           ))}
         </div>
-      </Container>
+      </BackgroundContainer>
     );
   }
 }

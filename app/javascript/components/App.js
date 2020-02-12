@@ -66,7 +66,6 @@ class App extends React.Component {
                     />
                   )}
                 />
-                <Route exact path="/doctors" render={() => <DoctorsList doctors={store.getState().doctors} />} />
               </LoginChecker>
             </Switch>
           </StylesProvider>

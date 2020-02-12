@@ -1,20 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Container from '@material-ui/core/Container';
 import styled from 'styled-components';
 import getUser from '../redux/actions/users';
+import BackgroundContainer from './styled/BackgroundContainer';
 import StyledInput from './styled/StyledInput';
 import ValidateError from './styled/ValidateError';
 import RoundButton from './styled/RoundButton';
 import Header from './styled/Header';
 
-const WelcomeContainer = styled(Container)`
-  background-color: #E1FFF7;
-  height: 100vh;
-  overflow: auto;
+const WelcomeContainer = styled(BackgroundContainer)`
   padding-top: 25vh;
 `;
+
 const UserLogin = ({ getUser }) => {
   const nameField = React.createRef();
 

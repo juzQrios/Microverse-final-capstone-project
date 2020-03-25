@@ -85,7 +85,7 @@ Feel free to checkout this project's [Kanban board](https://github.com/juzQrios/
 
 ## Acknowledgments
 
-* App specification from [Microverse](https://www.microverse.org/)
+* App specification from [Microverse](https://www.microverse.org/).
 * [Design](https://www.behance.net/gallery/77208667/MediCo-Medical-mobile-app-UIUX-design?tracking_source=search%7Cmobile%20app) by [Vinisha Panjikar](https://www.behance.net/vinishapanjikar) on Behance.
 
 ## License
